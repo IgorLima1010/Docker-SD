@@ -1,5 +1,6 @@
 const app = require("./app");
 const db = require("./db");
+const db = require("./db2");
 
 db.connect().then(() => {
   console.log("Connected to MongoDB: " + db.url);

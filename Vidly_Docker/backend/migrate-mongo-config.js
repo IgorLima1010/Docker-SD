@@ -1,25 +1,29 @@
 const db = require("./db");
+const db2 = require("./db2"); // Importe as configurações para o segundo banco de dados, você pode ajustar o nome do módulo conforme necessário.
+
 
 module.exports = {
   mongodb: {
-    url: db.url,
+    url: db.url, // URL do primeiro banco de dados
+    url2: db2.url, // URL do segundo banco de dados
 
-    databaseName: "vidly",
+    databaseName: "vidly", // Nome do banco de dados para o primeiro banco de dados
+
+    databaseName2: "vidly2", // Nome do banco de dados para o segundo banco de dados
 
     options: {
-      useNewUrlParser: true, // removes a deprecation warning when connecting
-      useUnifiedTopology: true, // removes a deprecating warning when connecting
-      //   connectTimeoutMS: 3600000, // increase connection timeout to 1 hour
-      //   socketTimeoutMS: 3600000, // increase socket timeout to 1 hour
+      useNewUrlParser: true, // Opções para o primeiro banco de dados
+      useUnifiedTopology: true, // Opções para o primeiro banco de dados
+    },
+
+    options2: {
+      useNewUrlParser: true, // Opções para o segundo banco de dados
+      useUnifiedTopology: true, // Opções para o segundo banco de dados
     },
   },
 
-  // The migrations dir, can be an relative or absolute path. Only edit this when really necessary.
+  // O restante da configuração permanece o mesmo para ambas as bases de dados
   migrationsDir: "migrations",
-
-  // The mongodb collection where the applied changes are stored. Only edit this when really necessary.
   changelogCollectionName: "changelog",
-
-  // The file extension to create migrations and search for in migration dir
   migrationFileExtension: ".js",
 };

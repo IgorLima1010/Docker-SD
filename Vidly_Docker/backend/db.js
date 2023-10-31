@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const dbUrl = process.env.DB_URL || "mongodb://localhost/vidly";
+const dbUrl2 = process.env.DB_URL || "mongodb://localhost/vidly2";
 
 const connect = async () => {
   await mongoose.connect(dbUrl, {

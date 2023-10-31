@@ -7,4 +7,11 @@ const Movie = mongoose.model('Movie', new mongoose.Schema({
   }
 }));
 
-module.exports = Movie; 
+const AnotherMovie = mongoose.model('AnotherMovie', new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  }
+}));
+
+module.exports = Movie, AnotherMovie; 

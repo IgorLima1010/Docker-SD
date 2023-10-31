@@ -3,37 +3,35 @@ version: "3.8"
 services:
   frontend:
     depends_on:
-      - backend
+      - backend1
     build: ./frontend
     ports:
       - 3000:3000
 
-  backend:
-    depends_on:
-      - db
-      - novodb
+  backend1:
     build: ./backend
     ports:
       - 3001:3001
-      - 3002:3002
     environment:
-      DB_URL: mongodb://db/vidly
-      NOVO_DB_URL: mongodb://novobanco/novobancodatabase 
+      DB_URL: mongodb://db1/vidly
     command: ./docker-entrypoint.sh
 
-  db:
+  db1:
     image: mongo:4.0-xenial
+    container_name: db1
+    ports:
+      - 27017:27017
+    volumes:
+      - vidly1:/data/db
+
+  db2:
+    image: mongo:4.0-xenial
+    container_name: db2
     ports:
       - 27018:27017
     volumes:
-      - vidly:/data/db
-  novobanco:  # Novo serviço de banco de dados
-    image: mongo:4.4  # Escolha a imagem do MongoDB desejada e a versão
-    volumes:
-      - novobanco:/data/db  # Associe o volume à pasta do banco de dados
-    ports:
-      - 27019:27017  # Defina a porta de mapeamento desejada (aqui é 27019)
+      - vidly2:/data/db
 
 volumes:
-  vidly:
-  novobanco:
+  vidly1:
+  vidly2:
