@@ -1,17 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose")
+const {movieDB} = require("../db");
 
-const Movie = mongoose.model('Movie', new mongoose.Schema({
+const Movie = movieDB.model('Movie', new mongoose.Schema({
   title: {
     type: String, 
     required: true
   }
 }));
 
-const AnotherMovie = mongoose.model('AnotherMovie', new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  }
-}));
 
-module.exports = Movie, AnotherMovie; 
+module.exports = Movie; 

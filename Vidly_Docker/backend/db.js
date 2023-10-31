@@ -1,16 +1,14 @@
 const mongoose = require("mongoose");
 
-const dbUrl = process.env.DB_URL || "mongodb://localhost/vidly";
-const dbUrl2 = process.env.DB_URL || "mongodb://localhost/vidly2";
+const dbUrl =  "mongodb://db/vidly";
 
-const connect = async () => {
-  await mongoose.connect(dbUrl, {
+const movieDB =  mongoose.createConnection(dbUrl, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-  });
-  console.log("Connected to MongoDB: " + dbUrl);
-};
+});
+  
+console.log("Connected to MongoDB: " + dbUrl);
 
-const close = () => mongoose.connection.close();
+const close = () => movieDB.close();
 
-module.exports = { connect, close, url: dbUrl };
+module.exports = { movieDB, close, url: dbUrl };
